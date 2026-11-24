@@ -126,3 +126,29 @@ document.querySelector("input").addEventListener("keydown", function(event) {
         checkRating();
     }
 });
+
+
+// BACKGROUND MUSIC
+const backgroundMusic = document.getElementById("backgroundMusic");
+const musicToggle = document.getElementById("musicToggle");
+const musicIcon = document.getElementById("musicIcon");
+const musicLabel = document.getElementById("musicLabel");
+
+musicToggle.addEventListener("click", function() {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play()
+            .then(function() {
+                musicIcon.textContent = "❚❚";
+                musicLabel.textContent = "PAUSE MUSIC";
+                musicToggle.setAttribute("aria-label", "Pause music");
+            })
+            .catch(function() {
+                musicLabel.textContent = "MUSIC UNAVAILABLE";
+            });
+    } else {
+        backgroundMusic.pause();
+        musicIcon.textContent = "♫";
+        musicLabel.textContent = "PLAY MUSIC";
+        musicToggle.setAttribute("aria-label", "Play music");
+    }
+});
